@@ -1,5 +1,6 @@
 import React, {useState, useEffect} from 'react';
 import axios from 'axios';
+import Navbar from './Navbar';
 
 const Film = () => {
 	const [film, setFilms] = useState([]);
@@ -20,7 +21,7 @@ const Film = () => {
 
 	if(loading){
 		return(
-			<div>Loading...</div>
+			<div>Loading Film...</div>
 		)
 	}
 
@@ -32,10 +33,12 @@ const Film = () => {
 
 	return (
 		<div>
+			<Navbar/>
 			{film.map((item) => {
 				return(
 					<div key={item.id}>
 						<h1>{item.title}</h1>
+						{/* <h1>Just testing</h1> */}
 						<small>{item.year}</small>
 					</div>
 				)

@@ -18,7 +18,7 @@ export const films = () => {
 			year: 1994,
 		},{
 			id: 5,
-			title: 'The Lord of the Rings: The Return of the King',
+			title: 'Titanic',
 			year: 2003,
 		}
 	]
