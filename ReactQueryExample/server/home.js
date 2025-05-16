@@ -1,7 +1,7 @@
 export const home = () => {
 	const home = [{
 		id: 1,
-		title: 'Girlhood-4',
+		title: 'Girlhood-7',
 		year: 1994,
 	},{
 		id: 2,

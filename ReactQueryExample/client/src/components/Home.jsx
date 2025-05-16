@@ -32,9 +32,8 @@ const Home = () => {
 	const {isLoading, isError, error, data, isFetching} = useQuery({
 		queryKey: ['superhero'],
 		queryFn: fetchHome,
-		refetchOnMount: true,
-		refetchOnWindowFocus: true, //UI insync with remote data(backend data)
-		refetchInterval: 10000 // every 10s
+		refetchInterval: 1000, // every 10s
+		refetchIntervalInBackground: true, // when the tab is in the background
 	});
 
 	 const queryClient = new QueryClient();
