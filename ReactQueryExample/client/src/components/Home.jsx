@@ -32,7 +32,9 @@ const Home = () => {
 	const {isLoading, isError, error, data, isFetching} = useQuery({
 		queryKey: ['superhero'],
 		queryFn: fetchHome,
-		staleTime: 15000, // Holds the api call for 15 seconds
+		refetchOnMount: true,
+		refetchOnWindowFocus: true, //UI insync with remote data(backend data)
+		refetchInterval: 10000 // every 10s
 	});
 
 	 const queryClient = new QueryClient();
@@ -40,9 +42,6 @@ const Home = () => {
 	if(isLoading){
 		return <div>Loading Home...</div>
 	}
-	
-	// console.log("isFetching:",isFetching);
-	// console.log("isLoading:",isLoading);
 
 	if(isError){
 		return(
