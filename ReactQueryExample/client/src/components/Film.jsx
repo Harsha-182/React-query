@@ -17,7 +17,7 @@ const Film = () => {
 			setError(err.message);
 			setLoading(false);
 		})
-	})
+	},[])
 
 	if(loading){
 		return(

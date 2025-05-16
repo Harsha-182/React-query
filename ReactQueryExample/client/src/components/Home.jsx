@@ -32,20 +32,17 @@ const Home = () => {
 	const {isLoading, isError, error, data, isFetching} = useQuery({
 		queryKey: ['superhero'],
 		queryFn: fetchHome,
-		cacheTime: 5000,
+		staleTime: 15000, // Holds the api call for 15 seconds
 	});
 
 	 const queryClient = new QueryClient();
-	 
-	 const data1 = queryClient.getQueryData(['superhero']);
-		console.log("data1==================", data1);
-	 
+	 	 
 	if(isLoading){
 		return <div>Loading Home...</div>
 	}
 	
-	console.log("isFetching:",isFetching);
-	console.log("isLoading:",isLoading);
+	// console.log("isFetching:",isFetching);
+	// console.log("isLoading:",isLoading);
 
 	if(isError){
 		return(
