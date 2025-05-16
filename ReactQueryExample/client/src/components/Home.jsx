@@ -29,11 +29,10 @@ const Home = () => {
 		return axios.get('http://localhost:7000/home').then((res) => res.data.data);
 	}
 
-	const {isLoading, isError, error, data, isFetching} = useQuery({
+	const {isLoading, isError, error, data, refetch} = useQuery({
 		queryKey: ['superhero'],
 		queryFn: fetchHome,
-		refetchInterval: 1000, // every 10s
-		refetchIntervalInBackground: true, // when the tab is in the background
+		enabled: false // this will not run the query on component mount
 	});
 
 	 const queryClient = new QueryClient();
@@ -51,6 +50,7 @@ const Home = () => {
 	return (
 		<div>
 			<Navbar/>
+			<button onClick={refetch}>Fetch Home</button> {/* this will run the query on button click */}
 			{data?.map((item) => {
 				return(
 					<div key={item.id}>
