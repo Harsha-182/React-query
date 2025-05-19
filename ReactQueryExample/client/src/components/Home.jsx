@@ -29,14 +29,22 @@ const Home = () => {
 		return axios.get('http://localhost:7000/home').then((res) => res.data.data);
 	}
 
+	const onSuccess = (data) => {
+		console.log("Perform side effect after data fetching", data.length);
+	}
+
+	const onError = (error) => {
+		console.log("Perform side effect after encountering error", error.message);
+	}
+
 	const {isLoading, isError, error, data, refetch} = useQuery({
 		queryKey: ['superhero'],
 		queryFn: fetchHome,
-		enabled: false // this will not run the query on component mount
+		onSuccess,
+		onError,
 	});
 
-	 const queryClient = new QueryClient();
-	 	 
+
 	if(isLoading){
 		return <div>Loading Home...</div>
 	}
@@ -50,7 +58,6 @@ const Home = () => {
 	return (
 		<div>
 			<Navbar/>
-			<button onClick={refetch}>Fetch Home</button> {/* this will run the query on button click */}
 			{data?.map((item) => {
 				return(
 					<div key={item.id}>
