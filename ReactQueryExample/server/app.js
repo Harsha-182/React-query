@@ -26,6 +26,18 @@ app.get('/home', (req, res) => {
 	})
 })
 
+app.get('/home/:id', (req, res) => {
+  const { id } = req.params;
+  const homeList = home();
+  const item = homeList.find((film) => film.id === parseInt(id));
+
+  if (!item) {
+    return res.status(404).json({ message: 'Item not found' });
+  }
+
+  res.json({ data: item });
+});
+
 app.listen(7000, () => {
 	console.log("server is runnnig on port 7000");
 })

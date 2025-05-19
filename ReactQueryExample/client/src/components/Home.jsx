@@ -3,6 +3,7 @@ import { useQuery, QueryClient, QueryClientProvider } from '@tanstack/react-quer
 
 import Navbar from './Navbar';
 import { useCustomQuery } from './hooks/HomeData';
+import { Link } from 'react-router-dom';
 
 const Home = () => {
 	// const [film, setFilms] = useState([]);
@@ -53,11 +54,8 @@ const Home = () => {
 			<button onClick={refetch}>Refetch</button>
 			{data?.map((item) => {
 				return(
-					<div key={item}>
-						{/* <h1>{item.title}</h1> */}
-						<h2>{item}</h2>
-						{/* <h2>Just testing</h2> */}
-						{/* <small>{item.year}</small> */}
+					<div key={item.id}>
+						<Link to={`/home/${item.id}`}>{item.title}</Link>
 					</div>
 				)
 			})}

@@ -11,10 +11,6 @@ export const useCustomQuery = (onSuccess, onError) => {
 			queryFn: fetchHome,
 			onSuccess,
 			onError,
-			select: (data) => {
-				const superheroNames = data.map((item) => item.title);
-				return superheroNames;
-			},
 			enabled: false
 		});
 }
