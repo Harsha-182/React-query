@@ -42,6 +42,10 @@ const Home = () => {
 		queryFn: fetchHome,
 		onSuccess,
 		onError,
+		select: (data) => {
+			const superheroNames = data.map((item) => item.title);
+			return superheroNames;
+		}
 	});
 
 
@@ -60,10 +64,11 @@ const Home = () => {
 			<Navbar/>
 			{data?.map((item) => {
 				return(
-					<div key={item.id}>
-						<h1>{item.title}</h1>
+					<div key={item}>
+						{/* <h1>{item.title}</h1> */}
+						<h2>{item}</h2>
 						{/* <h2>Just testing</h2> */}
-						<small>{item.year}</small>
+						{/* <small>{item.year}</small> */}
 					</div>
 				)
 			})}
