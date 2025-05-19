@@ -1,8 +1,8 @@
 import React, {useState, useEffect} from 'react';
 import { useQuery, QueryClient, QueryClientProvider } from '@tanstack/react-query';
-import axios from 'axios';
 
 import Navbar from './Navbar';
+import { useCustomQuery } from './hooks/HomeData';
 
 const Home = () => {
 	// const [film, setFilms] = useState([]);
@@ -25,9 +25,6 @@ const Home = () => {
 	// 	)
 	// }
 
-	const fetchHome = () => {
-		return axios.get('http://localhost:7000/home').then((res) => res.data.data);
-	}
 
 	const onSuccess = (data) => {
 		console.log("Perform side effect after data fetching", data.length);
@@ -37,16 +34,7 @@ const Home = () => {
 		console.log("Perform side effect after encountering error", error.message);
 	}
 
-	const {isLoading, isError, error, data, refetch} = useQuery({
-		queryKey: ['superhero'],
-		queryFn: fetchHome,
-		onSuccess,
-		onError,
-		select: (data) => {
-			const superheroNames = data.map((item) => item.title);
-			return superheroNames;
-		}
-	});
+	const {isLoading, isError, error, data, refetch} = useCustomQuery(onSuccess, onError);
 
 
 	if(isLoading){
@@ -62,6 +50,7 @@ const Home = () => {
 	return (
 		<div>
 			<Navbar/>
+			<button onClick={refetch}>Refetch</button>
 			{data?.map((item) => {
 				return(
 					<div key={item}>
