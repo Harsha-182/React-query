@@ -4,6 +4,7 @@ import cors from 'cors';
 import { films } from './data.js';
 import { home, users, channels } from './home.js';
 import { friend } from './friend.js';
+import { color } from './color.js';
 
 const app = express();
 
@@ -81,6 +82,21 @@ app.get('/channel/:id', (req, res) => {
 		status:"success",
 		data: result
 	})
+})
+
+app.get('/color',(req, res) => {
+	const { page = 1, limit = 10 } = req.query;
+	const startIndex = (parseInt(page) - 1) * parseInt(limit);
+	const endIndex = startIndex + parseInt(limit);
+	const paginatedColors = color.slice(startIndex, endIndex);
+
+	res.status(200).json({
+		status: "success",
+		page: parseInt(page),
+		limit: parseInt(limit),
+		total: color.length,
+		data: paginatedColors
+	});
 })
 
 app.listen(7000, () => {

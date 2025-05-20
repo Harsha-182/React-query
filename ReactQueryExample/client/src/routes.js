@@ -7,6 +7,7 @@ import { HomeDetail } from './components/HomeDetail';
 import { ParallelQueries } from './components/ParallelQueries';
 import { DynamicParallelPage } from './components/DynamicParallel.page';
 import { DependentQueriesPage } from './components/DependentQueries.page';
+import { PaginatedQueries } from './components/PaginatesQueries.page';
 
 const NavigationRoutes = () => {
 	return (
@@ -31,6 +32,12 @@ const NavigationRoutes = () => {
 						<DependentQueriesPage
 							email = 'harsha@gmail.com'
 						/>
+					}
+				/>
+				<Route
+					path='/color'
+					element={
+						<PaginatedQueries/>
 					}
 				/>
 			</Routes>
