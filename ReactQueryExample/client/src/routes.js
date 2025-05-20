@@ -6,6 +6,7 @@ import Main from './components/Main';
 import { HomeDetail } from './components/HomeDetail';
 import { ParallelQueries } from './components/ParallelQueries';
 import { DynamicParallelPage } from './components/DynamicParallel.page';
+import { DependentQueriesPage } from './components/DependentQueries.page';
 
 const NavigationRoutes = () => {
 	return (
@@ -21,6 +22,14 @@ const NavigationRoutes = () => {
 					element={
 						<DynamicParallelPage
 							homeId = {[1,2,3,4,5]}
+						/>
+					}
+				/>
+				<Route 
+					path='/dependent'
+					element={
+						<DependentQueriesPage
+							email = 'harsha@gmail.com'
 						/>
 					}
 				/>

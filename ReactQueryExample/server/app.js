@@ -2,7 +2,7 @@ import express from 'express';
 import cors from 'cors';
 
 import { films } from './data.js';
-import { home } from './home.js';
+import { home, users, channels } from './home.js';
 import { friend } from './friend.js';
 
 const app = express();
@@ -45,6 +45,41 @@ app.get('/friend', (req, res) => {
 	res.status(200).json({
 		status:"success",
 		data: friendList
+	})
+})
+
+app.get('/user/:id', (req,res) => {
+	const {id} = req.params;
+
+	const result = users.find(user => {
+		return user.id === id;
+	})
+	if(!result){
+		return res.status(404).json({
+			status:"fail",
+			message:"user not found"
+		})
+	}
+	res.status(200).json({
+		status:"success",
+		data: users
+	})
+})
+
+app.get('/channel/:id', (req, res) => {
+	const {id} = req.params;
+	const result = channels.find((channel) => {
+		return channel.id === id;
+	})
+	if(!result){
+		return res.status(404).json({
+			status:"fail",
+			message:"channel not found"
+		})
+	}
+	res.status(200).json({
+		status:"success",
+		data: result
 	})
 })
 
