@@ -8,6 +8,7 @@ import { ParallelQueries } from './components/ParallelQueries';
 import { DynamicParallelPage } from './components/DynamicParallel.page';
 import { DependentQueriesPage } from './components/DependentQueries.page';
 import { PaginatedQueries } from './components/PaginatesQueries.page';
+import { InfinteQueries } from './components/InfiniteQueries';
 
 const NavigationRoutes = () => {
 	return (
@@ -38,6 +39,12 @@ const NavigationRoutes = () => {
 					path='/color'
 					element={
 						<PaginatedQueries/>
+					}
+				/>
+				<Route
+					path='/infinite'
+					element={
+						<InfinteQueries/>
 					}
 				/>
 			</Routes>
