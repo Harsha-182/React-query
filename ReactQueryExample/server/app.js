@@ -3,6 +3,7 @@ import cors from 'cors';
 
 import { films } from './data.js';
 import { home } from './home.js';
+import { friend } from './friend.js';
 
 const app = express();
 
@@ -37,6 +38,15 @@ app.get('/home/:id', (req, res) => {
 
   res.json({ data: item });
 });
+
+app.get('/friend', (req, res) => {
+	const friendList = friend();
+	
+	res.status(200).json({
+		status:"success",
+		data: friendList
+	})
+})
 
 app.listen(7000, () => {
 	console.log("server is runnnig on port 7000");

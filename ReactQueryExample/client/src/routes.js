@@ -4,6 +4,7 @@ import Film from './components/Film';
 import Home from './components/Home';
 import Main from './components/Main';
 import { HomeDetail } from './components/HomeDetail';
+import { ParallelQueries } from './components/ParallelQueries';
 
 const NavigationRoutes = () => {
 	return (
@@ -13,6 +14,7 @@ const NavigationRoutes = () => {
 				<Route path='/film' element={<Film/>}/>
 				<Route path='/home' element={<Home/>}/>
 				<Route path='/home/:id' element={<HomeDetail/>}/>
+				<Route path='/friend' element={<ParallelQueries/>}/>
 			</Routes>
 		</BrowserRouter>
 	)

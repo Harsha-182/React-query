@@ -13,6 +13,9 @@ const Navbar = () => {
 				<li>
 					<Link to="/home">Home</Link>
 				</li>
+				<li>
+					<Link to="/friend">Friend</Link>
+				</li>
 			</ul>
 		</div>
 	)
