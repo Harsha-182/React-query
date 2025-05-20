@@ -1,4 +1,4 @@
-import { useQuery, QueryClient, QueryClientProvider } from '@tanstack/react-query';
+import { useQuery, useQueryClient  } from '@tanstack/react-query';
 import axios from 'axios';
 
 const fetchHome = async ({queryKey}) => {
@@ -8,8 +8,16 @@ const fetchHome = async ({queryKey}) => {
 }
 
 export const useHomeDetail = (id) => {
+	const queryClient = useQueryClient();
 	return useQuery({
-			queryKey: ['superhero', id],
+			queryKey: ['superherodetail', id],
 			queryFn: fetchHome,
+			initialData: () => {
+				const cachedHomeList = queryClient
+				.getQueryData(['superhero'])
+
+				return cachedHomeList?.find(home => home.id == id);
+			}
+			
 		});
 }
