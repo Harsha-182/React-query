@@ -21,8 +21,11 @@ export const useAddHomeData = () => {
 	const queryClient = useQueryClient();
 	return useMutation({
 		mutationFn: addHome,
-		onSuccess: () => {
-			queryClient.invalidateQueries({ queryKey: ['superhero']});
+		onSuccess: (data) => {
+			// queryClient.invalidateQueries({ queryKey: ['superhero']});
+			queryClient.setQueryData(['superhero'], (olddata) => {
+				return [...olddata, data.data.data]
+			})
 		}
 	})
 }

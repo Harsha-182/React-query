@@ -106,7 +106,6 @@ app.get('/color',(req, res) => {
 app.post('/home', async(req, res) => {
 	const newItem = req.body;
 
-	console.log("	newItem", newItem);
 	if (!newItem || !newItem.id) {
 		return res.status(400).json({ status: "fail", message: "Invalid data" });
 	}
