@@ -1,4 +1,4 @@
-import { useQuery, useMutation } from '@tanstack/react-query';
+import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
 import axios from 'axios';
 
 const fetchHome = async () => {
@@ -18,7 +18,11 @@ export const useCustomQuery = () => {
 };
 
 export const useAddHomeData = () => {
+	const queryClient = useQueryClient();
 	return useMutation({
-		mutationFn: addHome
+		mutationFn: addHome,
+		onSuccess: () => {
+			queryClient.invalidateQueries({ queryKey: ['superhero']});
+		}
 	})
 }
