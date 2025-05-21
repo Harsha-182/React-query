@@ -2,13 +2,18 @@ import express from 'express';
 import cors from 'cors';
 
 import { films } from './data.js';
-import { home, users, channels } from './home.js';
+import { home } from './home.js';
 import { friend } from './friend.js';
 import { color } from './color.js';
+import { users, channels } from './users.js';
+
+import fs from 'fs';
 
 const app = express();
 
 app.use(cors());
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 
 app.get('/film', (req, res) => {
 	const filmList = films();
@@ -98,6 +103,44 @@ app.get('/color',(req, res) => {
 		data: paginatedColors
 	});
 })
+app.post('/home', async(req, res) => {
+	const newItem = req.body;
+
+	console.log("	newItem", newItem);
+	if (!newItem || !newItem.id) {
+		return res.status(400).json({ status: "fail", message: "Invalid data" });
+	}
+
+	const homeFilePath = './home.js';
+
+	let currentData = [];
+	try {
+		const { home } = await import(homeFilePath + '?update=' + Date.now());
+		currentData = home();
+	} catch (e) {
+		currentData = [];
+	}
+
+	currentData.push(newItem);
+
+	currentData = currentData.map(item => ({
+		...item,
+		id: typeof item.id === 'string' ? parseInt(item.id, 10) : item.id,
+		year: typeof item.year === 'string' ? parseInt(item.year, 10) : item.year
+	}));
+
+	const fileContent = `
+	export function home() {
+		return ${JSON.stringify(currentData, null, 2)};
+	}
+	export const users = [];
+	export const channels = [];
+	`;
+
+	fs.writeFileSync(homeFilePath, fileContent);
+
+	res.status(201).json({ status: "success", data: newItem });
+});
 
 app.listen(7000, () => {
 	console.log("server is runnnig on port 7000");

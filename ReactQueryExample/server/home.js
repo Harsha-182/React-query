@@ -1,59 +1,73 @@
-export const home = () => {
-	const home = [{
-		id: 1,
-		title: 'Girlhood-7',
-		year: 1994,
-	},{
-		id: 2,
-		title: 'The Godfather',
-		year: 1972,
-	},{
-		id: 3,
-		title: 'The Dark Knight',
-		year: 2008,
-	},{
-		id: 4,
-		title: 'Pulp Fiction',
-		year: 1994,
-	},{
-		id: 5,
-		title: 'Titanic',
-		year: 1997,
-	},{
-		id: 6,
-		title: 'The Lord of the Rings: The Return of the King',
-		year: 2003,
-	},{
-		id: 7,
-		title: 'Forrest Gump',
-		year: 1994,
-	},{
-		id: 8,
-		title: 'Incedious',
-		year: 2010,
-	},{
-		id: 9,
-		title: 'Yamlard',
-		year: 1999,
-	},{
-		id: 10,
-		title: 'Fight Club',
-		year: 1999,
-	}]
 
-	return home
-}
-
-export const users = [ 
-	{
-		id: 'harsha@gmail.com',
-		channelId: 'codevolution'
+	export function home() {
+		return [
+  {
+    "id": 1,
+    "title": "Girlhood-7",
+    "year": 1994
+  },
+  {
+    "id": 2,
+    "title": "The Godfather",
+    "year": 1972
+  },
+  {
+    "id": 3,
+    "title": "The Dark Knight",
+    "year": 2008
+  },
+  {
+    "id": 4,
+    "title": "Pulp Fiction",
+    "year": 1994
+  },
+  {
+    "id": 5,
+    "title": "Titanic",
+    "year": 1997
+  },
+  {
+    "id": 6,
+    "title": "The Lord of the Rings: The Return of the King",
+    "year": 2003
+  },
+  {
+    "id": 7,
+    "title": "Forrest Gump",
+    "year": 1994
+  },
+  {
+    "id": 8,
+    "title": "Incedious",
+    "year": 2010
+  },
+  {
+    "id": 9,
+    "title": "Yamlard",
+    "year": 1999
+  },
+  {
+    "id": 10,
+    "title": "Fight Club",
+    "year": 1999
+  },
+  {
+    "id": 21,
+    "title": "YadurappaA",
+    "year": 1950
+  },
+  {
+    "id": 13,
+    "title": "Harsha",
+    "year": 1999
+  },
+  {
+    "id": 18,
+    "title": "Final Destination Bloodlines",
+    "year": 2025
+  }
+];
 	}
-]
-
-export const channels = [
-	{
-		id: 'codevolution',
-		courses: ["React", "JavaScript", "Python"]
-	}
-]
+	export const users = [];
+	export const channels = [];
+	

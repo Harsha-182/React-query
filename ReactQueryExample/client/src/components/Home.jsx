@@ -2,41 +2,16 @@ import React, {useState, useEffect} from 'react';
 import { useQuery, QueryClient, QueryClientProvider } from '@tanstack/react-query';
 
 import Navbar from './Navbar';
-import { useCustomQuery } from './hooks/HomeData';
+import { useAddHomeData, useCustomQuery } from './hooks/HomeData';
 import { Link } from 'react-router-dom';
 
 const Home = () => {
-	// const [film, setFilms] = useState([]);
-	// const [loading, setLoading] = useState(true);
+	const [id, setId] = useState(0);
+	const [title, setTitle] = useState('');
+	const [year, setYear] = useState(0);
+	const {isLoading, isError, error, data, refetch} = useCustomQuery();
 
-	// useEffect(() => {
-	// 	axios.get('http://localhost:7000/film')
-	// 	.then((res) => {
-	// 		setFilms(res.data.data);
-	// 		setLoading(false);
-	// 	})
-	// 	.catch((err) => {
-	// 		console.log("err:",err);
-	// 	})
-	// })
-
-	// if(loading){
-	// 	return(
-	// 		<div>Loading...</div>
-	// 	)
-	// }
-
-
-	const onSuccess = (data) => {
-		console.log("Perform side effect after data fetching", data.length);
-	}
-
-	const onError = (error) => {
-		console.log("Perform side effect after encountering error", error.message);
-	}
-
-	const {isLoading, isError, error, data, refetch} = useCustomQuery(onSuccess, onError);
-
+	const { mutate:addHome } = useAddHomeData()
 
 	if(isLoading){
 		return <div>Loading Home...</div>
@@ -48,9 +23,22 @@ const Home = () => {
 		)
 	}
 
+	const handleAddHomeClick = async() => {
+		console.log({id, title, year})
+		const home = {id, title, year}
+		addHome(home)
+	}
+
+	
 	return (
 		<div>
 			<Navbar/>
+
+			<input type='number' placeholder='Enter ID' onChange={e => setId(e.target.value)} />
+			<input type='title' placeholder='Enter Title' onChange={e => setTitle(e.target.value)} />
+			<input type='year' placeholder='Enter Year' onChange={e => setYear(e.target.value)}/>
+			<button onClick={handleAddHomeClick}>Add</button>
+			
 			<button onClick={refetch}>Refetch</button>
 			{data?.map((item) => {
 				return(

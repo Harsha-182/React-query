@@ -1,16 +1,24 @@
-import { useQuery, QueryClient, QueryClientProvider } from '@tanstack/react-query';
+import { useQuery, useMutation } from '@tanstack/react-query';
 import axios from 'axios';
 
-const fetchHome = () => {
-	return axios.get('http://localhost:7000/home').then((res) => res.data.data);
+const fetchHome = async () => {
+	const res = await axios.get('http://localhost:7000/home');
+	return res.data.data;
 }
 
-export const useCustomQuery = (onSuccess, onError) => {
+const addHome = async (home) => {
+	return axios.post('http://localhost:7000/home', home);
+}
+
+export const useCustomQuery = () => {
 	return useQuery({
 			queryKey: ['superhero'],
 			queryFn: fetchHome,
-			onSuccess,
-			onError,
-			enabled: false
-		});
+	});
+};
+
+export const useAddHomeData = () => {
+	return useMutation({
+		mutationFn: addHome
+	})
 }
