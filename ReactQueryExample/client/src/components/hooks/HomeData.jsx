@@ -1,13 +1,17 @@
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
 import axios from 'axios';
+import { request } from '../../utils/axios-utils'
 
 const fetchHome = async () => {
-	const res = await axios.get('http://localhost:7000/home');
-	return res.data.data;
+	// const res = await axios.get('http://localhost:7000/home');
+	// return res.data.data;
+	return request({url: '/home'})
 }
 
 const addHome = async (home) => {
-	return axios.post('http://localhost:7000/home', home);
+	// return axios.post('http://localhost:7000/home', home);
+	return request({url: 'home', method: 'POST', data: home})
+
 }
 
 export const useCustomQuery = () => {
